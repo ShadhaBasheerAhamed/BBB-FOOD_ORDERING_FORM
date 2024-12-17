@@ -5,66 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Booking - BBB (Basheer Bucket Biryani)</title>
     <style>
+        /* Set background image for body */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-image: url('assests/bg.jpg'); /* Default image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
             padding: 20px;
+            transition: background-image 0.5s ease-in-out; /* Smooth transition */
         }
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-top: 10px;
-        }
-
-        .logo-container {
-            text-align: center;
+        /* Flexbox container for logo and title */
+        .header-container {
+            display: flex;
+            align-items: center; /* Vertically center the items */
+            justify-content: flex-start; /* Align items to the left */
             margin-bottom: 20px;
         }
 
-        .logo-container img {
-            max-width: 150px;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .logo-container {
+            margin-right: 15px; /* Space between the logo and the title */
         }
 
+        .logo-container img {
+            max-width: 70px; /* Smaller size for an elegant look */
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Smooth transition for logo scale */
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.1); /* Slight zoom effect on hover */
+        }
+
+        h1 {
+            color: #ffffff; /* White text color for visibility */
+            margin-top: 0;
+            font-size: 24px; /* Adjust title size as needed */
+            font-weight: 600; /* Slightly bolder text for a more refined look */
+        }
+
+        /* Centering the form container */
         .form-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        /* Use flexbox for form groups */
         .form-group {
+            display: flex;
+            flex-direction: column;
             margin-bottom: 15px;
         }
 
+        /* Style for labels */
         .form-group label {
             font-size: 16px;
             font-weight: bold;
-            display: block;
             margin-bottom: 5px;
+            text-align: left; /* Ensure labels are aligned left */
         }
 
+        /* Style for input fields */
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid #f8f8f8c9;
             border-radius: 4px;
+            box-sizing: border-box;
         }
 
+        /* Adjust textarea size */
         .form-group textarea {
             resize: vertical;
             height: 100px;
         }
 
+        /* Submit button style */
         button {
             background-color: #000000;
-            color: white;
+            color: rgba(255, 255, 255, 0.626);
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
@@ -75,19 +102,19 @@
         }
 
         button:hover {
-            background-color: #000000;
+            background-color: #333333;
         }
     </style>
 </head>
 <body>
 
-    <!-- Logo Section -->
-    <div class="logo-container">
-        <img src="assests/bbb-logo.png" alt="BBB Logo">
+    <!-- Header Section with Logo and Title -->
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="assests/bbb-logo.png" alt="BBB Logo">
+        </div>
+        <h1>Hotel Food Booking - BBB (Basheer Bucket Biryani)</h1>
     </div>
-
-    <!-- Title Section -->
-    <h1>Hotel Food Booking - BBB (Basheer Bucket Biryani)</h1>
 
     <!-- Form Section -->
     <div class="form-container">
@@ -104,7 +131,7 @@
 
             <div class="form-group">
                 <label for="category">Category</label>
-                <select id="category" name="category" required>
+                <select id="category" name="category" required onchange="changeBackground()">
                     <option value="starter">Starter</option>
                     <option value="main_course">Main Course</option>
                     <option value="dessert">Dessert</option>
@@ -125,6 +152,22 @@
             <button type="submit">Submit Food Item</button>
         </form>
     </div>
+
+    <script>
+        // Function to change background image based on category
+        function changeBackground() {
+            var category = document.getElementById('category').value;
+            if (category === 'starter') {
+                document.body.style.backgroundImage = "url('assests/starter.jpg')"; // Replace with starter image
+            } else if (category === 'main_course') {
+                document.body.style.backgroundImage = "url('assests/bg.jpg')"; // Replace with main course image
+            } else if (category === 'dessert') {
+                document.body.style.backgroundImage = "url('assests/dessert.jpeg')"; // Replace with dessert image
+            } else if (category === 'beverages') {
+                document.body.style.backgroundImage = "url('assests/beverages.jpeg')"; // Replace with beverages image
+            }
+        }
+    </script>
 
 </body>
 </html>
