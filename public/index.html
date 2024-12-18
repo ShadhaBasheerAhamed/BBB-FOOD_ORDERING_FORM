@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Booking - BBB (Basheer Bucket Biryani)</title>
+    <style>
+        /* Set background image for body */
+        body {
+            font-family: Arial, sans-serif;
+    
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Flexbox container for logo and title */
+        .header-container {
+            display: flex;
+            align-items: center; /* Vertically center the items */
+            justify-content: flex-start; /* Align items to the left */
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            margin-right: 15px; /* Space between the logo and the title */
+        }
+
+        .logo-container img {
+            max-width: 70px; /* Smaller size for an elegant look */
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Smooth transition for logo scale */
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.1); /* Slight zoom effect on hover */
+        }
+
+        h1 {
+            color: #ffffff; /* White text color for visibility */
+            margin-top: 0;
+            font-size: 24px; /* Adjust title size as needed */
+            font-weight: 600; /* Slightly bolder text for a more refined look */
+        }
+
+        /* Centering the form container */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Use flexbox for form groups */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        /* Style for labels */
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left; /* Ensure labels are aligned left */
+        }
+
+        /* Style for input fields */
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #f8f8f8c9;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Adjust textarea size */
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        /* Submit button style */
+        button {
+            background-color: #000000;
+            color: rgba(255, 255, 255, 0.626);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with Logo and Title -->
+    <!-- <div class="header-container">
+        <div class="logo-container">
+            <img src="assests/bbb-logo.png" alt="BBB Logo">
+        </div>
+        <h1>Hotel Food Booking - BBB (Basheer Bucket Biryani)</h1>
+    </div> -->
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="food-id">Food ID (Auto-generated)</label>
+                <input type="text" id="food-id" name="food_id" value="Auto-generated" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="food-name">Food Name</label>
+                <input type="text" id="food-name" name="food_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required onchange="changeBackground()">
+                    <option value="starter">Starter</option>
+                    <option value="main_course">Main Course</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="beverages">Beverages</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <button type="submit">Submit Food Item</button>
+        </form>
+    </div>
+
+    <script>
+
+        // Array to store submitted form data
+const foodItems = [];
+
+// Function to handle the form submission
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent the form from submitting (page refresh)
+
+    // Get values from the form
+    const foodId = generateFoodId(); // Call the function to generate an ID
+    const foodName = document.getElementById('food-name').value;
+    const category = document.getElementById('category').value;
+    const price = document.getElementById('price').value;
+    const description = document.getElementById('description').value;
+
+    // Add the form data to the foodItems array
+    foodItems.push({
+        "Food ID": foodId,
+        "Food Name": foodName,
+        "Category": category,
+        "Price": price,
+        "Description": description
+    });
+
+    // Log the updated array as a table in the console
+    console.clear(); // Clears previous console output for better visibility
+    console.table(foodItems);
+
+    // Reset the form fields
+    document.querySelector('form').reset();
+}
+
+// Function to generate a unique food ID
+let foodCounter = 1000; // Start from 1000 and increment
+function generateFoodId() {
+    return foodCounter++;
+}
+
+// Attach the form submission handler to the form
+document.querySelector('form').addEventListener('submit', handleSubmit);
+
+    </script>
+
+
+    <script src = server.js></script>
+</body>
+</html>
